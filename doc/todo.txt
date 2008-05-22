@@ -1,0 +1,13 @@
+1. separate member function definitions from declaration in templates
+2. separate into _impl.h files
+3. put detail in detail directory, exhaustion policies in exhaustion
+   directory
+4. consider calling instruction::add_register_v, add_direct_address_32_v,
+   etc. instead of creating using new - no need for visitor, _v hierarchy,
+   shared_ptr, formatter (maybe), etc.
+5. think about moving comments after #ifdef guard
+
+Decode values
+Instruction classification
+Format instructions
+Verify operands with new Intel specs

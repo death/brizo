@@ -1,0 +1,40 @@
+Consider the following instruction disassemblies (32-bit mode):
+
+F3 0F 10 00     movss xmm0, [eax]          (my interpretation from IA32 spec.)
+HIEW            movss xmm0, [eax]
+IDA             movss xmm0, [eax]
+SoftICE         movss xmm0, [eax]
+
+66 0F 10 00     movupd xmm0, [eax]
+HIEW            movupd xmm0, [eax]
+IDA             movupd xmm0, [eax]
+SoftICE         movupd xmm0, [eax]
+
+F3 66 0F 10 00  UNDEFINED
+HIEW            rep movupd xmm0, [eax]
+IDA             rep movupd xmm0, [eax]
+SoftICE         movss xmm0, [eax]
+
+66 F3 0F 10 00  UNDEFINED
+HIEW            movss xmm0, [eax]
+IDA             rep movupd xmm0, [eax]
+SoftICE         movss xmm0, [eax]
+
+67 66 0F 10 00  movupd xmm0, [bx][si]
+HIEW            movupd xmm0, [bx][si]
+IDA             movupd xmm0, [bx][si]
+SoftICE         movupd xmm0, [bx][si]
+
+66 67 0F 10 00  movupd xmm0, [bx][si]
+HIEW            movups xmm0, [bx][si]
+IDA             movupd xmm0, [bx][si]
+SoftICE         movupd xmm0, [bx][si]
+
+HIEW seems to always take the prefix byte preceding the escape byte to
+determine the opcode. As a consequence, it is erroneous in disassembling
+the last instruction.
+
+IDA seems to always prefer the 66 prefix (and not F3) to determine the opcode.
+It doesn't care about the prefix order, which is correct.
+
+SoftICE also doesn't care about the prefix order, but it prefers F3.

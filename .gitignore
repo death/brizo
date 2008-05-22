@@ -1,0 +1,7 @@
+bin
+obj
+*.suo
+*~
+*.vssscc
+*.vspscc
+*.scc

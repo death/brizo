@@ -1,0 +1,53 @@
+//
+// TODO: We should have (at least?) two kinds of tables:
+//
+// Opcode table: Entries correspond to the next byte in the stream.
+//               Example: EMMS  -> OpcodeTable[0x0F] (OTABLE)
+//                              -> OpcodeTable_0F[0x77]
+//
+// Prefix table: Entries correspond to different prefix values.
+//               Example: PAUSE -> OpcodeTable[0xF3] (PREFIX)
+//                              -> OpcodeTable[0x90] (PTABLE)
+//                              -> PrefixTable_90[P2I(0xF3)]
+//                        NOP   -> OpcodeTable[0x90]
+//                              -> PrefixTable_90[P2I(NoPrefix)]
+//                                 (P2I converts a prefix to an index for
+//                                  the prefix table)
+//
+
+//
+// How should we handle prefixes?
+//
+// An instruction has a maximum of 4 prefix bytes. Each of these prefixes
+// must belong to a different prefix group. There are 4 prefix groups,
+// and 11 different possible prefixes.
+//
+// We could maintain an array of four values of a prefix enumeration.
+//
+// The prefix enumeration contains the possible prefixes and a "none"
+// value.
+//
+
+//
+// An opcode prefix table has 4 entries:
+//
+// 0 - No prefix opcode
+// 1 - Prefix 66 opcode
+// 2 - Prefix F2 opcode
+// 3 - Prefix F3 opcode
+//
+// An unknown opcode in one of the prefix entries tells us to use the
+// no-prefix opcode.
+//
+
+To handle ModR/M-distinguished instructions, we can have the following
+semi-opcodes:
+
+    O_MRM_BOTH_TABLE    -   For instruction groups that don't care
+                            about the MOD bit. Has 8 entries.
+    O_MRM_MEM_TABLE     -   For instruction groups working only with MEM.
+                            Has 8 entries.
+    O_MRM_11_TABLE      -   For instruction groups working only with 11.
+                            Has 8 entries.
+    O_MRM_FULL_TABLE    -   For instruction groups working with either
+                            MEM or 11. Has 16 entries.

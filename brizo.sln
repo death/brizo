@@ -1,0 +1,46 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "src", "src\src.vcproj", "{C8FBDD10-961E-4DAD-B31A-132663D92C2A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tests", "tests\tests.vcproj", "{AECC0BE8-9325-40C3-869A-9328176C85FB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C8FBDD10-961E-4DAD-B31A-132663D92C2A} = {C8FBDD10-961E-4DAD-B31A-132663D92C2A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SolutionUniqueID = {DB0733A4-B33F-49E9-B298-5AA31DAF3D56}
+		SccProjectUniqueName1 = src\\src.vcproj
+		SccLocalPath1 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection1 = src\\
+		SccProjectUniqueName2 = tests\\tests.vcproj
+		SccLocalPath2 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection2 = tests\\
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C8FBDD10-961E-4DAD-B31A-132663D92C2A}.Debug.ActiveCfg = Debug|Win32
+		{C8FBDD10-961E-4DAD-B31A-132663D92C2A}.Debug.Build.0 = Debug|Win32
+		{C8FBDD10-961E-4DAD-B31A-132663D92C2A}.Release.ActiveCfg = Release|Win32
+		{C8FBDD10-961E-4DAD-B31A-132663D92C2A}.Release.Build.0 = Release|Win32
+		{AECC0BE8-9325-40C3-869A-9328176C85FB}.Debug.ActiveCfg = Debug|Win32
+		{AECC0BE8-9325-40C3-869A-9328176C85FB}.Debug.Build.0 = Debug|Win32
+		{AECC0BE8-9325-40C3-869A-9328176C85FB}.Release.ActiveCfg = Release|Win32
+		{AECC0BE8-9325-40C3-869A-9328176C85FB}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
